@@ -39,11 +39,3 @@ handlers:
   script: unused
   login: optional
   secure: optional
-- url: /login
-  script: unused
-  login: optional
-  secure: optional
-- url: /data
-  script: unused
-  login: optional
-  secure: optional
