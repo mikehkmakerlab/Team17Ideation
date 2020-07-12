@@ -13,3 +13,19 @@
 // limitations under the License.
 
 
+function getFilterProjects() {  
+    fetch('/filter')
+    .then(response => response.json()).then((filter) => {
+    const projectElement = document.getElementById('project-list');
+    filter.forEach((project) => {
+      projectElement.appendChild(createListElement(project));
+    })
+    });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(project) {
+  const liElement = document.createElement('li');
+  liElement.innerText = project.title + ", " + project.summary + ", " + project.tags;
+  return liElement;
+}
