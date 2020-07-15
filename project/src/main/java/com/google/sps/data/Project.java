@@ -24,6 +24,8 @@ public class Project {
         this(title, "");
     }
 
+    
+
     @Override
     public String toString(){
         return title + ": " + summary + " (" + String.join(", ", tags) + ")";
@@ -53,7 +55,7 @@ public class Project {
         this.summary = newSummary;
     }
 
-    public void setTags(Set<String> tags){
+    public void setTags(Iterable<String> tags){
         for (String tag : tags){
             this.tags.add(tag.trim().toLowerCase());
         }

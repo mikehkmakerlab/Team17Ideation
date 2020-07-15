@@ -26,6 +26,6 @@ function getFilterProjects() {
 /** Creates an <li> element containing text. */
 function createListElement(project) {
   const liElement = document.createElement('li');
-  liElement.innerText = project.title + ", " + project.summary;
+  liElement.innerText = project.title + ", " + project.summary + ", " + project.tags;
   return liElement;
 }

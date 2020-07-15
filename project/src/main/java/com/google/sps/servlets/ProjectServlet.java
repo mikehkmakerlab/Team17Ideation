@@ -29,6 +29,7 @@ import java.util.HashSet;
 import java.time.LocalDateTime;
 import java.time.Instant;
 import java.util.TimeZone;
+import java.util.Arrays;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -51,12 +52,16 @@ public class ProjectServlet extends HttpServlet {
         for (Entity entity: results.asIterable()) {
             String title = (String) entity.getProperty("title");
             String summary = (String) entity.getProperty("summary");
-            //String tags = (String) entity.getProperty("tags");
+            String tags = (String) entity.getProperty("tags");
             long date = (long) entity.getProperty("dateCreated");
             LocalDateTime dateCreated = LocalDateTime.ofInstant(Instant.ofEpochMilli(date), 
                                 TimeZone.getDefault().toZoneId());
              
-            projects.add(new Project(title, summary));
+            Project project = new Project(title, summary);
+            if (tags != null) {
+                project.setTags(Arrays.asList(tags.split(",")));
+            }
+            projects.add(project);
         }
         
         response.setContentType("application/json;");
@@ -72,12 +77,14 @@ public class ProjectServlet extends HttpServlet {
         //get params
         String title = getParameter(request, "title", "");
         String summary = getParameter(request, "summary", "");
-       // HashSet tags = getParameter(request, "tags", ""); //returning as string
+        String[] tags = request.getParameterValues("tag");
 
         Entity taskEntity = new Entity("project");
         taskEntity.setProperty("title", title);
         taskEntity.setProperty("summary", summary);
-        //taskEntity.setProperty("tags", tags);
+        if(tags != null) {
+            taskEntity.setProperty("tags", String.join(",", tags));
+        }
         taskEntity.setProperty("dateCreated", System.currentTimeMillis());
         datastore.put(taskEntity);
 
