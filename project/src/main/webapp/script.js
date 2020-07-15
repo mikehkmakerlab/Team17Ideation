@@ -14,10 +14,10 @@
 
 
 function getFilterProjects() {  
-    fetch('/filter')
-    .then(response => response.json()).then((filter) => {
+    fetch('/project')
+    .then(response => response.json()).then((projects) => {
     const projectElement = document.getElementById('project-list');
-    filter.forEach((project) => {
+    projects.forEach((project) => {
       projectElement.appendChild(createListElement(project));
     })
     });
@@ -26,6 +26,6 @@ function getFilterProjects() {
 /** Creates an <li> element containing text. */
 function createListElement(project) {
   const liElement = document.createElement('li');
-  liElement.innerText = project.title + ", " + project.summary + ", " + project.tags;
+  liElement.innerText = project.title + ", " + project.summary;
   return liElement;
 }

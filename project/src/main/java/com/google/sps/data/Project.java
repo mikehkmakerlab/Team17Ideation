@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class Project {
-
+    
     private String title;
     private String summary;
 	private Set<String> tags;
@@ -13,11 +13,15 @@ public class Project {
 	//private Set<User> group; 
 	private LocalDateTime dateCreated;
 
-    public Project(String title) {
+    public Project(String title, String summary) {
         dateCreated = LocalDateTime.now();
         this.title = title;
-        this.summary = "";
+        this.summary = summary;
         this.tags = new HashSet<>();
+    }
+
+    public Project(String title) {
+        this(title, "");
     }
 
     @Override
