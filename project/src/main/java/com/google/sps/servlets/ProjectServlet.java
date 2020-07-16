@@ -21,19 +21,82 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.sps.data.Project;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+import java.time.LocalDateTime;
+import java.time.Instant;
+import java.util.TimeZone;
+import java.util.Arrays;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 
 
 @WebServlet("/project")
 public class ProjectServlet extends HttpServlet {
-
+    
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<Project> projects = new ArrayList<>();
+        
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        Query query = new Query("project").addSort("dateCreated", SortDirection.DESCENDING);
+        PreparedQuery results = datastore.prepare(query);
 
+        for (Entity entity: results.asIterable()) {
+            String title = (String) entity.getProperty("title");
+            String summary = (String) entity.getProperty("summary");
+            String tags = (String) entity.getProperty("tags");
+            long date = (long) entity.getProperty("dateCreated");
+            LocalDateTime dateCreated = LocalDateTime.ofInstant(Instant.ofEpochMilli(date), 
+                                TimeZone.getDefault().toZoneId());
+             
+            Project project = new Project(title, summary);
+            if (tags != null) {
+                project.setTags(Arrays.asList(tags.split(",")));
+            }
+            projects.add(project);
+        }
+        
+        response.setContentType("application/json;");
+        Gson gson = new Gson();
+        String json = gson.toJson(projects);
+        response.getWriter().println(json);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+        //get params
+        String title = getParameter(request, "title", "");
+        String summary = getParameter(request, "summary", "");
+        String[] tags = request.getParameterValues("tag");
+
+        Entity taskEntity = new Entity("project");
+        taskEntity.setProperty("title", title);
+        taskEntity.setProperty("summary", summary);
+        if(tags != null) {
+            taskEntity.setProperty("tags", String.join(",", tags));
+        }
+        taskEntity.setProperty("dateCreated", System.currentTimeMillis());
+        datastore.put(taskEntity);
+
+        response.sendRedirect("/projects.html"); 
+    }
+
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+        String value = request.getParameter(name);
+        if (value == null) {
+            return defaultValue;
+        }
+        return value;
     }
 
 }

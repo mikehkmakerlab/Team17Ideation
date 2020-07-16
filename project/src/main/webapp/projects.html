@@ -19,6 +19,25 @@
                 <a id="login-logout" class="w3-bar-item w3-button w3-right" href="">Login</a>
             </div>
         </div>
+
+        <form action="/project" method="POST">
+            <p>Create a new project:</p>
+            <p>Title:</p>
+            <input type="text" id="title" name="title" placeholder="Enter a project title"><br><br>
+            <textarea id="text" name="summary" cols="70" rows="4" placeholder="Enter a Description"></textarea>
+            <div name="tags">
+                <input type="checkbox" id="python" name="tag" value="python">
+                <label for="python"> Python </label><br>
+                <input type="checkbox" id="java" name="tag" value="java">
+                <label for="java"> Java </label><br>
+                <input type="checkbox" id="html" name="tag" value="html">
+                <label for="html"> HTML </label><br>
+                <input type="checkbox" id="javaScript" name="tag" value="javaScript">
+                <label for="javaScript"> JavaScript </label><br>
+            </div>            
+            <input type="submit" />
+        </form>
+
         <ul id="project-list"></ul>    
     </body>
 </html>
