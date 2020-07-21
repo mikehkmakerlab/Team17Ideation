@@ -1,0 +1,14 @@
+body{
+    background-color:rgb(104, 175, 114);
+}
+
+.w3-border {
+    border: 0px !important;
+}
+
+h1{
+    color: black;
+    font-family: "Georgia", serif;
+    text-align: center;
+    font-size: 40px;
+}
