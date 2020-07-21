@@ -29,3 +29,19 @@ function createListElement(project) {
   liElement.innerText = project.title + ", " + project.summary + ", " + project.tags;
   return liElement;
 }
+
+/*
+function userLoggedIn(){
+    var loggedIn = false;
+    fetch('/login').then(response => response.json()).then((authentication) => {
+        loggedIn = authentication.status;
+
+        if(loggedIn){
+            document.getElementById("login").innerHTML = "<p>Logout <a href=\"" + authentication.logout + "\">here</a>.</p>";  
+        } else {
+            document.getElementById("login").innerHTML = "<p>Login <a href=\"" + authentication.logins + "\">here</a>.</p>";
+        }
+
+    });
+}
+*/
