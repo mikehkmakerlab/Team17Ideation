@@ -14,31 +14,59 @@
         <div class="navbar"><! --Start of navbar -->
             <div class="w3-bar w3-border w3-light-grey">
                 <a id="home-link" class="w3-bar-item w3-button w3-mobile" href="/index.html">Home</a>
-                <a id="project-link" class="w3-bar-item w3-button w3-mobile" href="projects.html">Find a project</a>
-                <a id="chat-link" class="w3-bar-item w3-button w3-mobile" href="">Chats</a>
+                <a id="project-link" class="w3-bar-item w3-button w3-mobile" href="projects.html">Find/Create a project</a>
                 <a id="login-logout" class="w3-bar-item w3-button w3-right" href="/login.html">Login</a>
             </div>
         </div>
         <! --End of navbar -->
 
-        <form action="/project" method="POST">
-            <p>Create a new project:</p>
-            <p>Title:</p>
-            <input type="text" id="title" name="title" placeholder="Enter a project title"><br><br>
-            <textarea id="text" name="summary" cols="70" rows="4" placeholder="Enter a Description"></textarea>
-            <div name="tags">
-                <input type="checkbox" id="python" name="tag" value="python">
-                <label for="python"> Python </label><br>
-                <input type="checkbox" id="java" name="tag" value="java">
-                <label for="java"> Java </label><br>
-                <input type="checkbox" id="html" name="tag" value="html">
-                <label for="html"> HTML </label><br>
-                <input type="checkbox" id="javaScript" name="tag" value="javaScript">
-                <label for="javaScript"> JavaScript </label><br>
-            </div>            
-            <input type="submit" />
-        </form>
+        <div class="accordionWrapper">
+            <div class="accordionItem close">
+                <h2 class="accordionItemHeading">Create a New Project<div id="arrow"></div></h2>
+                <div class="accordionItemContent">
+                    <form action="/project" method="POST">
+                        <input type="text" id="title" name="title" placeholder="Enter a project title"><br><br>
+                        <textarea id="text" name="summary" cols="70" rows="4" placeholder="Enter a Description"></textarea>
+                        <div name="tags">
+                            <input type="checkbox" id="python" name="tag" value="python">
+                            <label for="python"> Python </label><br>
+                            <input type="checkbox" id="java" name="tag" value="java">
+                            <label for="java"> Java </label><br>
+                            <input type="checkbox" id="javaScript" name="tag" value="javaScript">
+                            <label for="javaScript"> JavaScript </label><br>
+                            <input type="checkbox" id="html" name="tag" value="html">
+                            <label for="html"> HTML </label><br>
+                            <input type="checkbox" id="C" name="tag" value="C">
+                            <label for="C"> C </label><br>
+                            <input type="checkbox" id="C#" name="tag" value="C#">
+                            <label for="C#"> C# </label><br>
+                            <input type="checkbox" id="C++" name="tag" value="C++">
+                            <label for="C++"> C++ </label><br>
+                            <input type="checkbox" id="ruby" name="tag" value="ruby">
+                            <label for="ruby"> Ruby </label><br>
+                            <input type="checkbox" id="go" name="tag" value="go">
+                            <label for="go"> Go </label><br>
+                        </div>            
+                        <input type="submit" />
+                    </form>
+                </div>
+            </div>
+            <div class="accordionItem close"></div>
+        </div>
 
-        <ul id="project-list"></ul>    
+        <p id='text'>Select a language you would like to filter the projects by:</p>
+        <div class="filterButton">
+            <button>Python</button>
+            <button>Java</button>
+            <button>JavaScript</button>
+            <button>HTML</button>
+            <button>C</button>
+            <button>C#</button>
+            <button>C++</button>
+            <button>Ruby</button>
+            <button>Go</button>
+        </div>
+        
+        <ul id="project-list" class="projectList"></ul>    
     </body>
 </html>
