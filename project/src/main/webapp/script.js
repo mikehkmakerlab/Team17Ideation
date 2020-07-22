@@ -25,10 +25,43 @@ function getFilterProjects() {
 
 /** Creates an <li> element containing text. */
 function createListElement(project) {
-  const liElement = document.createElement('li');
-  liElement.innerText = project.title + ", " + project.summary + ", " + project.tags;
+  const liElement = document.createElement("div");
+  liElement.className = 'container';
+  
+  const titleProject  = document.createElement('b');
+  titleProject.innerText = project.title + ":";
+  
+  const descriptionProject = document.createElement('p');
+  descriptionProject.innerText = project.summary;
+
+  const tags = document.createElement('div');
+  tags.className = 'tags';
+  tags.innerText = 'tags: ' + project.tags;
+
+  liElement.appendChild(titleProject);
+  liElement.appendChild(descriptionProject);
+  liElement.appendChild(tags);
   return liElement;
 }
+
+/**accordion */
+document.addEventListener('DOMContentLoaded', function() { 
+    var accItem = document.getElementsByClassName("accordionItem");
+    var accHD = document.getElementsByClassName("accordionItemHeading");
+    for (i = 0; i < accHD.length; i++) {
+    accHD[i].addEventListener("click", toggleItem, false);
+    }
+    function toggleItem() {
+    var itemClass = this.parentNode.className;
+    for (i = 0; i < accItem.length; i++) {
+        accItem[i].className = "accordionItem close";
+    }
+    if (itemClass == "accordionItem close") {
+        this.parentNode.className = "accordionItem open";
+    }
+    }
+});
+
 
 /*
 function userLoggedIn(){

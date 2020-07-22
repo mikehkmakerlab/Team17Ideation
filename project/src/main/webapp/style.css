@@ -1,0 +1,100 @@
+.open #arrow {
+    width: 0;
+    margin: 0 10px;
+    padding: 0;
+    border-bottom: 15px solid #fff;
+    border-left: 15Px solid transparent;
+    border-right: 15px solid transparent;
+    display: inline-block;
+}
+.close #arrow {
+    width: 0;
+    margin: 0 10px;
+    padding: 0;
+    border-top: 15px solid #fff;
+    border-left: 15Px solid transparent;
+    border-right: 15px solid transparent;
+    display: inline-block;
+}
+.container {
+  border-radius: 25px;
+  border: 2px solid rgb(130, 156, 172);
+  padding: 15px; 
+  margin: 15px;
+}
+
+.projectList {
+    padding: 15px;
+    align-self: center;
+}
+
+.tags {
+    font-style: italic;
+}
+
+#text {
+    padding-left: 20px;
+}
+
+.filterButton {
+    display: flex;
+    padding-left: 25px;
+    padding-right: 25px;
+    justify-content: space-evenly;
+}
+
+.accordionItemHeading{
+    cursor:pointer;
+    margin:10px;
+    padding:10px;
+    background:#2980b9;
+    color:#fff;
+    width:100%;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.close .accordionItemContent{
+    height:0px;
+    transition:height 1s ease-out;
+    -webkit-transform: scaleY(0);
+	-o-transform: scaleY(0);
+	-ms-transform: scaleY(0);
+	transform: scaleY(0);
+    float:left;
+    display:block;
+}
+.open .accordionItemContent{
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    width: 100%;
+    margin: 0px 0px 10px 10px;
+    display:block;
+    -webkit-transform: scaleY(1);
+	-o-transform: scaleY(1);
+	-ms-transform: scaleY(1);
+	transform: scaleY(1);
+    -webkit-transform-origin: top;
+	-o-transform-origin: top;
+	-ms-transform-origin: top;
+	transform-origin: top;
+	-webkit-transition: -webkit-transform 0.4s ease-out;
+	-o-transition: -o-transform 0.4s ease;
+	-ms-transition: -ms-transform 0.4s ease;
+	transition: transform 0.4s ease;
+    box-sizing: border-box;
+}
+
+.open .accordionItemHeading{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    background-color: #bdc3c7;
+    color: #7f8c8d;
+}
+
+.accordionItem {
+    width: 70%;
+    margin: 10px;
+}
