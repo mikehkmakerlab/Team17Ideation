@@ -12,15 +12,37 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-function getFilterProjects() {  
+/* display filtered projects */
+function getFiltered() {  
+    console.log("getFiltered called");
+    document.getElementById('project-list').innerHTML = "";
+    var ele = document.getElementsByName('filter-tag');
+    var tag = "";
+    for(i = 0; i < ele.length; i++) { 
+        console.log(ele[i]);
+        if (ele[i].checked){ 
+            tag = ele[i].value; 
+            console.log(ele[i].value + "is checked");
+        }
+    }
+    console.log("tag: " + tag);
     fetch('/project')
-    .then(response => response.json()).then((projects) => {
-    const projectElement = document.getElementById('project-list');
-    projects.forEach((project) => {
-      projectElement.appendChild(createListElement(project));
-    })
-    });
+        .then(response => response.json()).then((projects) => {
+            const filteredElement = document.getElementById('project-list');
+            projects.forEach((project) => {
+                var found = false;
+                console.log(project.title);
+                project.tags.forEach( (t) => {
+                    console.log(t);
+                    if (t === tag){
+                        found = true;
+                    } 
+                });
+                if (found == true){
+                    filteredElement.appendChild(createListElement(project));
+                }
+            })
+        });
 }
 
 /** Creates an <li> element containing text. */
