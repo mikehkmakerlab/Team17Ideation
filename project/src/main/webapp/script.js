@@ -25,24 +25,35 @@ function getFiltered() {
             console.log(ele[i].value + "is checked");
         }
     }
-    console.log("tag: " + tag);
-    fetch('/project')
-        .then(response => response.json()).then((projects) => {
-            const filteredElement = document.getElementById('project-list');
-            projects.forEach((project) => {
-                var found = false;
-                console.log(project.title);
-                project.tags.forEach( (t) => {
-                    console.log(t);
-                    if (t === tag){
-                        found = true;
-                    } 
-                });
-                if (found == true){
-                    filteredElement.appendChild(createListElement(project));
-                }
-            })
-        });
+    if (tag === ""){
+        fetch('/project')
+            .then(response => response.json()).then((projects) => {
+                const projectElement = document.getElementById('project-list');
+                projects.forEach((project) => {
+                    projectElement.appendChild(createListElement(project));
+                })
+            });
+    }
+    else{
+        console.log("tag: " + tag);
+        fetch('/project')
+            .then(response => response.json()).then((projects) => {
+                const filteredElement = document.getElementById('project-list');
+                projects.forEach((project) => {
+                    var found = false;
+                    console.log(project.title);
+                    project.tags.forEach( (t) => {
+                        console.log(t);
+                        if (t === tag){
+                            found = true;
+                        } 
+                    });
+                    if (found == true){
+                        filteredElement.appendChild(createListElement(project));
+                    }
+                })
+            });
+    }
 }
 
 /** Creates an <li> element containing text. */
