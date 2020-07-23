@@ -9,7 +9,7 @@
         <script src="script.js"></script>
     </head>
 
-    <body onload="getFilterProjects();">
+    <body onload="getFiltered();">
 
         <div class="navbar"><! --Start of navbar -->
             <div class="w3-bar w3-border w3-light-grey">
@@ -32,16 +32,16 @@
                             <label for="python"> Python </label><br>
                             <input type="checkbox" id="java" name="tag" value="java">
                             <label for="java"> Java </label><br>
-                            <input type="checkbox" id="javaScript" name="tag" value="javaScript">
-                            <label for="javaScript"> JavaScript </label><br>
+                            <input type="checkbox" id="javascript" name="tag" value="javascript">
+                            <label for="javascript"> JavaScript </label><br>
                             <input type="checkbox" id="html" name="tag" value="html">
                             <label for="html"> HTML </label><br>
-                            <input type="checkbox" id="C" name="tag" value="C">
-                            <label for="C"> C </label><br>
-                            <input type="checkbox" id="C#" name="tag" value="C#">
-                            <label for="C#"> C# </label><br>
-                            <input type="checkbox" id="C++" name="tag" value="C++">
-                            <label for="C++"> C++ </label><br>
+                            <input type="checkbox" id="c" name="tag" value="c">
+                            <label for="c"> C </label><br>
+                            <input type="checkbox" id="c#" name="tag" value="c#">
+                            <label for="c#"> C# </label><br>
+                            <input type="checkbox" id="c++" name="tag" value="c++">
+                            <label for="c++"> C++ </label><br>
                             <input type="checkbox" id="ruby" name="tag" value="ruby">
                             <label for="ruby"> Ruby </label><br>
                             <input type="checkbox" id="go" name="tag" value="go">
@@ -55,17 +55,26 @@
         </div>
 
         <p id='text'>Select a language you would like to filter the projects by:</p>
-        <div class="filterButton">
-            <button>Python</button>
-            <button>Java</button>
-            <button>JavaScript</button>
-            <button>HTML</button>
-            <button>C</button>
-            <button>C#</button>
-            <button>C++</button>
-            <button>Ruby</button>
-            <button>Go</button>
-        </div>
+        <form >
+            <input type="radio" id="python" name="filter-tag" value="python" onchange="getFiltered()">
+            <label for="python">Python</label><br>
+            <input type="radio" id="java" name="filter-tag" value="java" onchange="getFiltered()">
+            <label for="java">Java</label><br>
+            <input type="radio" id="javascript" name="filter-tag" value="javascript" onchange="getFiltered()">
+            <label for="javascript">JavaScript</label><br>
+            <input type="radio" id="html" name="filter-tag" value="html" onchange="getFiltered()">
+            <label for="html">HTML</label><br>
+            <input type="radio" id="c" name="filter-tag" value="c" onchange="getFiltered()">
+            <label for="c">C</label><br>
+            <input type="radio" id="C#" name="filter-tag" value="c#" onchange="getFiltered()">
+            <label for="c#">C#</label><br>
+            <input type="radio" id="c++" name="filter-tag" value="c++" onchange="getFiltered()">
+            <label for="c++">C++</label><br>
+            <input type="radio" id="ruby" name="filter-tag" value="ruby" onchange="getFiltered()">
+            <label for="ruby">Ruby</label><br>
+            <input type="radio" id="go" name="filter-tag" value="go" onchange="getFiltered()">
+            <label for="go">Go</label><br>
+        </form>
         
         <ul id="project-list" class="projectList"></ul>    
     </body>
